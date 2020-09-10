@@ -8,9 +8,11 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'deliveryapp';
+  title = 'consumo-api-angular';
   formUsuario = null;
   usuarios = null;
+  formCEP = null;
+  postCode = null;
 
   constructor(public formBuilder:FormBuilder, public http:HttpClient) {
 
@@ -19,12 +21,28 @@ export class AppComponent {
       avatar: [''],
       first_name: ['',[Validators.required,Validators.minLength(3)]],
       last_name: [''],
-      email: [''],
+      email: ['']
     });
-
     this.listar();
 
+    this.formCEP = this.formBuilder.group({
+      cep: [''],
+      logradouro: [''],
+      bairro: [''],
+      localidade: [''],
+      uf: [''],
+      ddd: ['']
+    });
+
   }
+
+  searchPostCode() {
+      this.http.get(`https://viacep.com.br/ws/${this.formCEP.get("cep").value}/json/`).subscribe(data=>{
+      let retorno:any=data;
+      this.postCode=retorno;
+      console.log(`https://viacep.com.br/ws/${this.formCEP.get("cep").value}/json/`)
+      })
+    }
 
   salvar() {
     this.http.put("https://reqres.in/api/users/"+this.formUsuario.get("id").value,this.formUsuario.value).subscribe(data=>{

@@ -24,3 +24,30 @@
   <td><button (click)="selecionar(c)">Editar</button></td>
 </tr>
 </table>
+
+<hr>
+
+<form [formGroup]="formCEP">
+  <input type="text" name="cep" formControlName="cep" placeholder="Informe o CEP"/>
+  <button (click)="searchPostCode()" [disabled]="!formCEP.valid" type="submit">Pesquisar CEP</button>
+</form>
+
+<br>
+<table style="width: 100%">
+  <tr>
+    <td>CEP</td>
+    <td>Logradouro</td>
+    <td>Bairro</td>
+    <td>Localidade</td>
+    <td>UF</td>
+    <td>DDD</td>
+  </tr>
+  <tr>
+    <td>{{postCode.cep}}</td>
+    <td>{{postCode.logradouro}}</td>
+    <td>{{postCode.bairro}}</td>
+    <td>{{postCode.localidade}}</td>
+    <td>{{postCode.uf}}</td>
+    <td>{{postCode.ddd}}</td>
+  </tr>
+</table>
