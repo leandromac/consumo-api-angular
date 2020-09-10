@@ -1,4 +1,7 @@
-# Deliveryapp
+# [ESTUDO] Consumo API Angular
+
+## API Test by
+https://reqres.in/api/users?page=2
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.1.0.
 
